@@ -1,7 +1,6 @@
 // TODO: Include packages needed for this 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const markdown = require("./utils/generateMarkdown.js");
 const generateMarkdown = require('./utils/generateMarkdown.js');
 
 
@@ -10,7 +9,7 @@ inquirer
         {
             type: 'input',
             message: 'What is the title of your project?',
-            name: 'title',
+            name: 'projTitle',
         },
         {
             type: 'input',
@@ -40,8 +39,13 @@ inquirer
         {
             type: 'list',
             message: 'Please select a license:',
-            choices: ['MIT', 'Apache 2.0', 'GPL v3', 'BSD 2-clause', 'BSD 3-clause', 'WTFPL', 'none'],
+            choices: ['MIT', 'Apache 2.0', 'GPL v3', 'BSD 2-clause', 'BSD 3-clause', 'none'],
             name: 'license',
+        },
+        {
+            type: 'number',
+            message: 'For license purposes, what year is it?',
+            name: 'year',
         },
         {
             type: 'input',
@@ -50,20 +54,24 @@ inquirer
         },
         {
             type: 'input',
+            message: 'Please enter your name:',
+            name: 'yourName',
+        },
+        {
+            type: 'input',
             message: 'Please enter your email address:',
             name: 'email',
         },
     ])
-    .then((response) => {
-        console.log(response);
-        generateMarkdown(response);
+    .then((answers) => {
+        console.log(answers);
+        const markdownContent = generateMarkdown(answers);
+
+        fs.appendFile('README.md', markdownContent, (err) =>
+            err ? console.log(err) : console.log('Success!'))
     })
 
-
 // TODO: Create a function to write README file
-const filename = "README.md";
-
-
 
 // // TODO: Create a function to initialize app
 // function init() { }
