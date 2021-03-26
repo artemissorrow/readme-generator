@@ -3,7 +3,7 @@
 let badge;
 
 function renderLicenseBadge(answers) {
-  switch (`${answers.license}`) {
+  switch (answers) {
     case 'MIT':
       badge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
       break;
@@ -31,7 +31,7 @@ let link;
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(answers) {
-  switch (`${answers.license}`) {
+  switch (answers) {
     case 'MIT':
       link = 'https://opensource.org/licenses/MIT'
       break;
@@ -60,7 +60,7 @@ function renderLicenseLink(answers) {
 let licenseTxt;
 
 function renderLicenseSection(answers) {
-  switch (`${answers.license}`) {
+  switch (answers) {
     case 'MIT':
       licenseTxt = `Copyright ${answers.year} ${answers.yourName}
 
@@ -164,12 +164,12 @@ ${answers.contribution}
 ${answers.test}
 
 ## License
-${badge} ${link}\
+${badge} ${link}  
 ${licenseTxt}
 
 ## Contact
-Questions? Comments? Contact me here:\
-@${answers.username}\
+Questions? Comments? Contact me here:  
+@${answers.username}  
 ${answers.email}
 `;
 }
